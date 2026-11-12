@@ -1,50 +1,37 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- 
+Relatório de Impacto de Sincronização:
+- Mudança de versão: 0.2.0 -> 0.2.1
+- Alterações: Ajuste de estrutura para total conformidade com o constitution-template.
+-->
+# sdd-icrud-grupo2 Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Código Simples e Sustentável
+O código DEVE ser simples, modular e de fácil manutenção. Soluções complexas sem justificativa técnica clara DEVEM ser evitadas em prol da legibilidade e simplicidade acadêmica.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Organização e Rastreabilidade
+Funcionalidades e tarefas DEVEM estar organizadas e documentadas. Todo desenvolvimento DEVE ser rastreável a uma tarefa definida, garantindo que o progresso seja transparente e estruturado.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Validação Obrigatória
+Nenhuma funcionalidade PODE ser considerada concluída sem passar por uma validação efetiva. Testes ou verificações funcionais DEVEM ser executados para confirmar que o requisito foi atendido conforme esperado.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Integração Consistente
+A comunicação entre o Front-end, API e Banco de Dados DEVE seguir um contrato definido. A integração DEVE ser validada em todas as camadas para garantir o funcionamento end-to-end do fluxo de estoque.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Consistência com Especificação
+A implementação DEVE refletir fielmente a especificação técnica definida no `/speckit.specify`. Divergências entre o código e o requisito especificado DEVEM ser corrigidas ou a especificação DEVE ser atualizada.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Visão Geral do Projeto
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+O **iCRUD** é um sistema de gerenciamento de estoque de alimentos voltado para restaurantes. O sistema tem como objetivo facilitar o controle dos produtos armazenados, permitindo acompanhar os itens disponíveis, suas quantidades e informações relevantes para a gestão do estoque. O projeto busca resolver problemas comuns no controle manual de estoque, como falta de organização, dificuldade para acompanhar a quantidade de produtos e risco de perda de alimentos.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Fluxo de Desenvolvimento
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+O desenvolvimento segue a metodologia Spec-Driven: todo código implementado DEVE derivar de uma tarefa validada. O projeto DEVE utilizar React com Vite. A linguagem de programação obrigatória é JavaScript. A estrutura do projeto deve priorizar a clareza, com separação de responsabilidades entre componentes de UI e lógica de integração. Revisões devem focar na aderência aos princípios desta constituição e na consistência com a especificação técnica do projeto.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Esta constituição substitui todas as práticas anteriores. Emendas exigem consenso da equipe e devem ser documentadas com um plano de migração claro. Todos os Pull Requests e revisões de código DEVEM verificar a conformidade com estes princípios.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 0.2.1 | **Ratified**: 2026-11-12 | **Last Amended**: 2026-11-12
