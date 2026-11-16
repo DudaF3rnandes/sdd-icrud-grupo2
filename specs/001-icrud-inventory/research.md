@@ -2,7 +2,7 @@
 
 **Feature**: [spec.md](./spec.md) | **Plan**: [plan.md](./plan.md) | **Date**: 2026-11-15
 
-The group confirmed the stock threshold, allowed lists and API contract documented below. Real API/database integration still requires execution and validation. Proposed files and tooling do not yet exist.
+The group confirmed the stock threshold, allowed lists and API contract documented below. The proposed files and tooling now exist and the front-end validation results are recorded in `speckit-evidence/`. Real API/database integration still requires execution and validation.
 
 ---
 

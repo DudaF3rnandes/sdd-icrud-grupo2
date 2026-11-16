@@ -1,8 +1,8 @@
 # Implementation Plan: iCRUD Inventory Management System
 
-**Branch Git atual**: `feature/03251030` | **Identificador da feature**: `001-icrud-inventory` | **Date**: 2026-11-15 | **Spec**: [spec.md](./spec.md)
+**Branch Git atual**: `feature/03251036` | **Identificador da feature**: `001-icrud-inventory` | **Date**: 2026-11-16 | **Spec**: [spec.md](./spec.md)
 
-**Estado do planejamento: decisões de design confirmadas pelo grupo.** A validação end-to-end com API e banco reais permanece obrigatória durante a implementação.
+**Estado do planejamento: decisões confirmadas e front-end implementado na branch `feature/03251036`.** A validação automatizada (unitária, de integração e de contrato) está registrada em `speckit-evidence/`; a validação end-to-end com a API e o banco reais permanece obrigatória.
 
 **Input**: Feature specification from `/specs/001-icrud-inventory/spec.md`
 
@@ -16,7 +16,7 @@ Technical approach: keep the stack minimal per the constitution — React functi
 
 **Language/Version**: JavaScript ES2022 + JSX (React 19.3); Node.js `^20.19.0 || >=22.12.0` for the installed Vite version
 
-**Primary Dependencies**: React 19.3, React DOM 19.3, Vite 8.3, oxlint 1.90. Dev-only additions: Vitest, @testing-library/react, @testing-library/user-event, jsdom, MSW, json-server
+**Primary Dependencies**: React 19.3, React DOM 19.3, Vite 8.3, oxlint 1.90. Dev-only additions: Vitest, @testing-library/react, @testing-library/jest-dom, @testing-library/user-event, jsdom, MSW, json-server
 
 **Storage**: No client-side persistence. The external REST API is the single source of truth; form drafts live only in React state (no `localStorage`)
 
@@ -152,6 +152,23 @@ See [research.md](./research.md). The group confirmed the stock threshold, allow
 | V. Spec consistency | Confirmed threshold and lists are recorded in FR-011 and FR-012 | PASS |
 
 Design gates pass. Real end-to-end integration remains a mandatory completion criterion. Complexity Tracking remains empty.
+
+## Implementation Status
+
+The front end described above is implemented on branch `feature/03251036` and
+validated locally against the contract with automated tests.
+
+| Check | Command | Result | Evidence |
+|-------|---------|--------|----------|
+| Automated tests | `npm test` | 7 files, 42 tests passed | `speckit-evidence/test-output.txt` |
+| Static analysis | `npm run lint` | no errors or warnings | `speckit-evidence/lint-output.txt` |
+| Production build | `npm run build` | success; JS 73.17 kB gzip (limit 200 kB) | `speckit-evidence/build-output.txt` |
+| Local mock | `npm run mock:api` | `GET /foods` 200 and `POST /foods` 201 verified | `speckit-evidence/README.md` |
+
+**Remaining obligation**: execute the quickstart scenarios against the group's
+real API and database (Principle IV). The local `json-server` mock does not
+reproduce every contract response (for example, `204` on `DELETE`), so automated
+validation uses MSW with the OpenAPI status codes and payloads.
 
 ## Complexity Tracking
 

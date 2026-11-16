@@ -4,7 +4,7 @@
 
 This model covers the client-side representation of a food record and the UI states needed to satisfy FR-001…FR-010. The REST transport shape is defined in [contracts/openapi.yaml](./contracts/openapi.yaml).
 
-The group confirmed the threshold, category and unit values and transport contract below. Actual API and database integration must still be validated during implementation.
+The group confirmed the threshold, category and unit values and transport contract below. Front-end implementation and automated validation are complete; actual API and database integration must still be validated against the group's real backend.
 
 ---
 
