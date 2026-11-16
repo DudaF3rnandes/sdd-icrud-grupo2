@@ -29,6 +29,8 @@ export default function useFoods() {
   }, [])
 
   useEffect(() => {
+    // Initial fetch on mount; setState inside the async loader is expected here.
+    // eslint-disable-next-line react/set-state-in-effect
     reload()
     return () => controllerRef.current?.abort()
   }, [reload])

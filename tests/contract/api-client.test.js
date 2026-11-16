@@ -30,7 +30,7 @@ describe('apiClient contract', () => {
   })
 
   it('creates a food with POST /foods and a JSON body', async () => {
-    expect.assertions(4)
+    expect.assertions(5)
     const payload = { name: 'Arroz', quantity: 10, unit: 'kg', category: 'Ingredientes' }
 
     server.use(
@@ -58,7 +58,7 @@ describe('apiClient contract', () => {
     const payload = { name: 'Arroz integral', quantity: 4, unit: 'kg', category: 'Ingredientes' }
 
     server.use(
-      http.put(`${API_BASE_URL}/foods/42`, async ({ request, params }) => {
+      http.put(`${API_BASE_URL}/foods/:id`, async ({ request, params }) => {
         expect(params.id).toBe('42')
         const body = await request.json()
         return HttpResponse.json({ id: '42', ...body })

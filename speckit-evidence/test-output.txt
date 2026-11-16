@@ -1,0 +1,13 @@
+
+> icrud-inventory@0.0.0 test
+> vitest run
+
+
+ RUN  v4.1.12 C:/Users/Beno/Pictures/temp/sdd-icrud-grupo2
+
+
+ Test Files  7 passed (7)
+      Tests  42 passed (42)
+   Start at  17:24:08
+   Duration  13.15s (transform 2.49s, setup 20.96s, import 4.42s, tests 13.97s, environment 21.99s)
+
