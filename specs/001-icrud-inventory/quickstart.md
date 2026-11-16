@@ -2,7 +2,7 @@
 
 **Feature**: [spec.md](./spec.md) | **Plan**: [plan.md](./plan.md) | **Date**: 2026-11-15
 
-Validation guide for use **after implementation**. The application, mock, `.env.example`, `npm test` and `npm run mock:api` are not yet available. A mock verifies the frontend against a simulated HTTP service; final end-to-end validation must also use the confirmed real API and database. Implementation details belong in `tasks.md` and the source.
+Validation guide for use **after implementation**. The application, mock, `.env.example`, `npm test` and `npm run mock:api` are available in this repository, and the automated results are recorded in `speckit-evidence/`. A mock verifies the frontend against a simulated HTTP service; final end-to-end validation must also use the confirmed real API and database.
 
 ## Prerequisites
 
