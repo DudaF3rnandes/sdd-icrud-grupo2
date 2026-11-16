@@ -2,7 +2,7 @@
 
 **Feature**: [spec.md](./spec.md) | **Plan**: [plan.md](./plan.md) | **Date**: 2026-11-15
 
-All `NEEDS CLARIFICATION` items from Technical Context are resolved below. The two pending group decisions from the specification's final section are resolved as explicit defaults so design can proceed; both are isolated in `src/lib/constants.js` and flagged for group confirmation in the completion report.
+The group confirmed the stock threshold, allowed lists and API contract documented below. Real API/database integration still requires execution and validation. Proposed files and tooling do not yet exist.
 
 ---
 
@@ -80,8 +80,8 @@ All `NEEDS CLARIFICATION` items from Technical Context are resolved below. The t
 
 ## 12. Local mock API for manual validation
 
-- **Decision**: Add `json-server` as a dev dependency with `mock/db.json` seeded with representative foods (available, low stock, zero, one per category) and an npm script `mock:api` on port 3001.
-- **Rationale**: The spec assumes a working backend, but the repository has none; the quickstart must be runnable end-to-end by any group member. `json-server` provides real HTTP status codes, including 404, without writing a backend.
+- **Decision**: Propose a local HTTP mock with `mock/db.json`, representative foods and an npm script `mock:api` on port 3001. Evaluate `json-server` against the confirmed contract before choosing it; add an adapter or another mock if required.
+- **Rationale**: The repository has no backend. A mock enables repeatable frontend validation, but cannot establish API/database integration. In particular, validation errors, 404 handling and DELETE response codes must be verified rather than assumed.
 - **Alternatives considered**: MSW in the browser (rejected for manual validation: hides real network behavior such as CORS and latency); writing an Express server (rejected: more code to maintain for the same effect); requiring the external API before any validation (rejected: blocks the group and violates Principle III).
 
 ## 13. Styling and accessibility
@@ -96,13 +96,13 @@ All `NEEDS CLARIFICATION` items from Technical Context are resolved below. The t
 - **Rationale**: Meets SC-002 with a large margin at the documented scale while keeping the code simple. Virtualization would add a dependency and complexity with no user-visible benefit here.
 - **Alternatives considered**: `react-window` (rejected: unnecessary below ~1000 rows); memoizing every row (rejected: premature; row components stay cheap).
 
-## 15. Group decisions requiring confirmation
+## 15. Confirmed group decisions
 
-| Item | Default adopted in this plan | Impact if changed |
+| Item | Confirmed decision | Impact if changed |
 |------|------------------------------|-------------------|
 | Low-stock threshold | `< 5` (after zero) | One constant + `stockStatus.test.js` expectations |
 | Category list | Ingredientes, Bebidas, Hortifruti, Carnes, Laticínios, Outros | `constants.js`, select options, validation test, OpenAPI enum |
 | Unit list | kg, g, L, mL, unidade, pacote | Same as above |
 | API field names | English camelCase | `foodsApi`, OpenAPI contract, contract tests |
 
-Once the group confirms or changes these values, `/speckit.specify` should record them in the spec so code and specification stay aligned (Principle V).
+These decisions are recorded in the specification. Changes require updating the specification and associated design artifacts (Principle V).
