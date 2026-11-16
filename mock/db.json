@@ -1,0 +1,12 @@
+{
+  "foods": [
+    { "id": "1", "name": "Arroz", "quantity": 10, "unit": "kg", "category": "Ingredientes" },
+    { "id": "2", "name": "Suco de laranja", "quantity": 2, "unit": "L", "category": "Bebidas" },
+    { "id": "3", "name": "Alface", "quantity": 0, "unit": "unidade", "category": "Hortifruti" },
+    { "id": "4", "name": "Picanha", "quantity": 6, "unit": "kg", "category": "Carnes" },
+    { "id": "5", "name": "Leite integral", "quantity": 4, "unit": "L", "category": "Laticínios" },
+    { "id": "6", "name": "Guardanapos", "quantity": 1, "unit": "pacote", "category": "Outros" },
+    { "id": "7", "name": "Feijão", "quantity": 5, "unit": "kg", "category": "Ingredientes" },
+    { "id": "8", "name": "Água mineral", "quantity": 12, "unit": "unidade", "category": "Bebidas" }
+  ]
+}
