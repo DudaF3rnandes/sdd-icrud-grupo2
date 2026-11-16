@@ -3,7 +3,8 @@ info:
   title: iCRUD Foods API
   version: 1.0.0
   description: |
-    REST contract consumed by the iCRUD inventory front end.
+    REST contract for the iCRUD inventory front end, confirmed by the group.
+    End-to-end integration with the real API and database remains to be validated.
 
     The API is the single source of truth for food records. Stock status
     (`Disponível`, `Estoque Baixo`, `Esgotado`) is NOT part of this contract:
@@ -147,7 +148,6 @@ components:
 
     FoodWrite:
       type: object
-      additionalProperties: false
       required:
         - name
         - quantity

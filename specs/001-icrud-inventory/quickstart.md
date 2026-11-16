@@ -2,11 +2,11 @@
 
 **Feature**: [spec.md](./spec.md) | **Plan**: [plan.md](./plan.md) | **Date**: 2026-11-15
 
-Runnable validation guide. It proves each user story end-to-end against a real HTTP server. Implementation details live in `tasks.md` and the source; this document is only about running and verifying.
+Validation guide for use **after implementation**. The application, mock, `.env.example`, `npm test` and `npm run mock:api` are not yet available. A mock verifies the frontend against a simulated HTTP service; final end-to-end validation must also use the confirmed real API and database. Implementation details belong in `tasks.md` and the source.
 
 ## Prerequisites
 
-- Node.js 20+ and npm 10+
+- Node.js `^20.19.0 || >=22.12.0` and npm
 - A browser (Chrome, Edge, Firefox, or Safari, current version)
 - The external REST API, **or** the bundled local mock (recommended for validation)
 
@@ -31,7 +31,7 @@ If you use the group's real API, point `VITE_API_BASE_URL` at it and skip the mo
 npm run mock:api
 ```
 
-This starts `json-server` on `http://localhost:3001` with the sample inventory in `mock/db.json` (available, low-stock, and zero-quantity items across categories). `GET /foods`, `POST /foods`, `PUT /foods/{id}`, and `DELETE /foods/{id}` are supported, including `404` responses.
+Once implemented, this starts the selected contract-compatible mock on `http://localhost:3001` with sample inventory in `mock/db.json`. Verify its methods, validation errors and response codes against the contract; plain `json-server` must not be assumed to implement them.
 
 ## Run the application
 
@@ -82,7 +82,7 @@ Each scenario is independently runnable and maps to a user story and its functio
    - **Expected**: an explicit "Nenhum alimento nesta categoria" empty state, not a blank table.
 4. Stop the mock API and reload the page.
    - **Expected**: an inline integration error with a "Tentar novamente" button; no blank screen. Restart the API and click retry.
-   - **Expected**: the list loads and the previously selected filter is preserved.
+   - **Expected**: the list loads; filter preservation applies to retries within the same session, not necessarily across page reloads.
 
 ### S3 — Edit an existing food (US3 / FR-008; SC-001)
 

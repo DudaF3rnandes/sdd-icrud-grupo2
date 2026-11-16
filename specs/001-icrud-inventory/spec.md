@@ -100,6 +100,8 @@ Como gerente, quero excluir um alimento do sistema mediante confirmação explí
 - **FR-008**: O sistema MUST permitir a edição de registros de alimentos existentes, aplicando as mesmas regras de validação do cadastro.
 - **FR-009**: O sistema MUST exigir uma confirmação explícita do usuário antes de efetivar a exclusão de um alimento.
 - **FR-010**: O sistema MUST aplicar regras de status para o estoque com base na quantidade disponível (ex: "Disponível", "Estoque Baixo", "Esgotado").
+- **FR-011**: O status MUST ser "Esgotado" para quantidade igual a zero, "Estoque Baixo" para quantidade maior que zero e menor que 5, e "Disponível" para quantidade maior ou igual a 5.
+- **FR-012**: As categorias permitidas MUST ser Ingredientes, Bebidas, Hortifruti, Carnes, Laticínios e Outros; as unidades permitidas MUST ser kg, g, L, mL, unidade e pacote.
 
 ### Key Entities
 
@@ -127,8 +129,6 @@ Como gerente, quero excluir um alimento do sistema mediante confirmação explí
 - O acesso ao sistema é realizado por gerentes ou operadores de restaurantes com conectividade à internet padrão.
 - As listas fechadas de categorias e unidades de medida são padronizadas conforme as necessidades operacionais do restaurante.
 
-## Ambiguities & Group Decisions Pending
+## Group Decisions
 
-As seguintes informações não foram totalmente detalhadas ou padronizadas nas decisões iniciais do grupo e ficam registradas para alinhamento posterior:
-1. **Limites exatos de "Estoque Baixo"**: Não foi especificado o limiar numérico exato (ex: quantidade menor que 5) que define quando um item passa de "Disponível" para "Estoque Baixo".
-2. **Lista Fechada de Categorias e Unidades**: Embora a necessidade de categorias e unidades de medida esteja definida, os valores exatos permitidos (ex: se "Laticínios" é uma categoria oficial ou se pode ser texto livre) dependem do contrato final da API.
+O grupo confirmou as regras de status e as listas fechadas descritas em FR-011 e FR-012. Também confirmou o contrato da API documentado em [contracts/openapi.yaml](./contracts/openapi.yaml); a integração efetiva com a API e o banco ainda deve ser validada durante a implementação.

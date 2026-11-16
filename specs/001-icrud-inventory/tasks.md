@@ -133,7 +133,7 @@ Purpose: Hardening, documentation, and full-system validation.
 
  T045 [P] Audit accessibility in src/components/FoodForm.jsx, src/components/FoodList.jsx, src/components/ConfirmDialog.jsx, and src/components/FeedbackMessage.jsx: every input has a <label>, errors use aria-describedby, messages live in aria-live="polite" regions, dialog traps focus and restores it on close, and all icons/actions have accessible names
  T046 [P] Update README.md with the project overview, chosen framework and rationale, npm install / npm run mock:api / npm run dev / npm test commands, artifact paths (specs/001-icrud-inventory/spec.md, plan.md, tasks.md), and task ownership placeholders
- T047 [P] Record the confirmed group decisions (low-stock threshold, category/unit lists, API field naming) in the Ambiguities & Group Decisions Pending section of specs/001-icrud-inventory/spec.md; if values changed, update research.md, data-model.md, contracts/openapi.yaml, and src/lib/constants.js together
+ T047 [P] Verify that the confirmed group decisions in the Group Decisions section of specs/001-icrud-inventory/spec.md match research.md, data-model.md, contracts/openapi.yaml, and the implemented src/lib/constants.js
  T048 [P] Remove unused Vite starter files (src/App.css, src/assets/hero.png, src/assets/react.svg, src/assets/vite.svg) and the unused public/icons.svg/public/vite.svg references, then confirm src/main.jsx and src/App.jsx contain no dead imports
  T049 Run npm run lint, and resolve every oxlint error or warning in src/ and tests/
  T050 Run npm test (all unit, integration, and contract suites) and npm run build; confirm the build succeeds and the initial JS bundle is ≤ 200 KB gzip (SC-002), adjusting imports if it is not
