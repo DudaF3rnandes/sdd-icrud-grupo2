@@ -1,0 +1,233 @@
+openapi: 3.0.3
+info:
+  title: iCRUD Foods API
+  version: 1.0.0
+  description: |
+    REST contract consumed by the iCRUD inventory front end.
+
+    The API is the single source of truth for food records. Stock status
+    (`Disponível`, `Estoque Baixo`, `Esgotado`) is NOT part of this contract:
+    the client derives it from `quantity` using the rules in
+    `specs/001-icrud-inventory/data-model.md`.
+
+    Field names use English camelCase on the wire; PT-BR labels are a
+    presentation concern handled by the front end.
+servers:
+  - url: http://localhost:3001
+    description: Local development mock (json-server) or group API
+  - url: https://api.example.com
+    description: Placeholder for the deployed API (configure via VITE_API_BASE_URL)
+tags:
+  - name: Foods
+    description: Food inventory records
+
+paths:
+  /foods:
+    get:
+      tags: [Foods]
+      operationId: listFoods
+      summary: List all food records
+      description: |
+        Returns every food record. The client filters by category locally and
+        must handle an empty array as a valid response (empty state, not error).
+      responses:
+        '200':
+          description: Food records (possibly empty)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Food'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      tags: [Foods]
+      operationId: createFood
+      summary: Create a food record
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FoodWrite'
+      responses:
+        '201':
+          description: Created record, including the server-assigned id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Food'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+  /foods/{id}:
+    parameters:
+      - $ref: '#/components/parameters/FoodId'
+    put:
+      tags: [Foods]
+      operationId: updateFood
+      summary: Replace an existing food record
+      description: |
+        Applies the same validation rules as create. On 404 the client must
+        inform the user that the record no longer exists and refresh the list.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FoodWrite'
+      responses:
+        '200':
+          description: Updated record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Food'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags: [Foods]
+      operationId: deleteFood
+      summary: Delete a food record
+      description: |
+        Only sent after the user explicitly confirms deletion in the UI.
+        On 404 the client must inform the user that the record is already gone
+        and refresh the list.
+      responses:
+        '204':
+          description: Record deleted (no body)
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
+components:
+  parameters:
+    FoodId:
+      name: id
+      in: path
+      required: true
+      description: Opaque, server-assigned identifier
+      schema:
+        type: string
+        minLength: 1
+      example: '42'
+
+  schemas:
+    Category:
+      type: string
+      description: Closed category list (see research.md §2)
+      enum:
+        - Ingredientes
+        - Bebidas
+        - Hortifruti
+        - Carnes
+        - Laticínios
+        - Outros
+      example: Bebidas
+
+    Unit:
+      type: string
+      description: Closed unit-of-measure list (see research.md §2)
+      enum:
+        - kg
+        - g
+        - L
+        - mL
+        - unidade
+        - pacote
+      example: L
+
+    FoodWrite:
+      type: object
+      additionalProperties: false
+      required:
+        - name
+        - quantity
+        - unit
+        - category
+      properties:
+        name:
+          type: string
+          description: Trimmed before submission; 2–80 characters
+          minLength: 2
+          maxLength: 80
+          pattern: "^[A-Za-zÀ-ÖØ-öø-ÿ0-9 '\\-.()]+$"
+          example: Suco de laranja
+        quantity:
+          type: number
+          description: Current stock balance; zero means out of stock
+          minimum: 0
+          maximum: 99999.999
+          multipleOf: 0.001
+          example: 12.5
+        unit:
+          $ref: '#/components/schemas/Unit'
+        category:
+          $ref: '#/components/schemas/Category'
+
+    Food:
+      allOf:
+        - $ref: '#/components/schemas/FoodWrite'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              minLength: 1
+              example: '42'
+            createdAt:
+              type: string
+              format: date-time
+              description: Optional; set by the server
+              example: '2026-11-15T12:00:00Z'
+            updatedAt:
+              type: string
+              format: date-time
+              description: Optional; set by the server
+              example: '2026-11-15T12:00:00Z'
+
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Human-readable, safe to surface to the user
+          example: 'Não foi possível salvar o alimento.'
+        fieldErrors:
+          type: object
+          description: Optional server-side validation details keyed by field name
+          additionalProperties:
+            type: string
+          example:
+            quantity: A quantidade não pode ser negativa.
+
+  responses:
+    ValidationError:
+      description: Invalid payload (client-side validation should normally prevent this)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Record does not exist (already deleted or never created)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Unexpected server failure
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
