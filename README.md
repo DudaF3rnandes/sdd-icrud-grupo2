@@ -9,7 +9,18 @@ descartados quando o envio falha.
 
 ## Integrantes
 
-- Grupo 2 — SDD/iCRUD (preencher nomes dos integrantes)
+- Grupo 2 — SDD/iCRUD
+Tema: Sistema de controle de estoque de alimentos
+
+Problema que resolve: O projeto busca facilitar o controle de estoque, permitindo organizar os produtos, acompanhar as entradas e saídas, consultar quantidades disponíveis e evitar problemas na gestão dos itens.
+
+Integrantes:
+- Maria Eduarda Fernandes Pinto
+- João Pedro França Franco
+- Breno De Freitas Farias
+- Beno Goulart Campos 
+- Bryan Anthony Alves Moraes 
+- Julia De Carvalho Gavioli
 
 ## Framework utilizado
 
@@ -21,17 +32,18 @@ em `specs/001-icrud-inventory/`, e a implementação segue esses documentos.
 
 ### Artefatos do SpecKit
 
-| Artefato | Caminho | Responsável |
+| Artefato | O que fez | Responsável |
 | --- | --- | --- |
-| Constituição | `.specify/memory/constitution.md` | Equipe |
-| Especificação | `specs/001-icrud-inventory/spec.md` | Equipe |
-| Plano | `specs/001-icrud-inventory/plan.md` | João Pedro Franco |
-| Pesquisa | `specs/001-icrud-inventory/research.md` | João Pedro Franco |
-| Modelo de dados | `specs/001-icrud-inventory/data-model.md` | João Pedro Franco |
-| Contratos | `specs/001-icrud-inventory/contracts/` | João Pedro Franco |
-| Tarefas | `specs/001-icrud-inventory/tasks.md` | João Pedro Franco |
-| Implementação | `src/`, `tests/`, `mock/` | Equipe (ver `tasks.md`) |
-| Quickstart / validação | `specs/001-icrud-inventory/quickstart.md` | Equipe |
+| Preparar | `.sdd-icrud-grupo2` | Maria Eduarda |
+| Constituição | `/speckit.constitution` | Maria Eduarda |
+| Especificar | `/speckit.specify` | Maria Eduarda |
+| Plano | `/speckit.plan` | João |
+| Tarefas | `/speckit.tasks` | João |
+| Implementação (SpecKit) | `/speckit.implement` | João |
+| Planejamento | Organização do projeto | Breno |
+| Implementação | Desenvolvimento do projeto | Beno |
+| Validação | Testes e validação | Bryan |
+| Relatório | Responder relatório no `README.md` | Julia |
 
 ## Como rodar
 
